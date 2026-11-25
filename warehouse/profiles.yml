@@ -1,0 +1,16 @@
+funnel_intelligence:
+  target: demo
+  outputs:
+    demo:
+      type: duckdb
+      path: "{{ env_var('FUNNEL_DB_PATH', '.data/funnel.duckdb') }}"
+      schema: analytics
+      threads: 2
+    bigquery:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GOOGLE_CLOUD_PROJECT', 'set-your-project') }}"
+      dataset: "{{ env_var('FUNNEL_BQ_DATASET', 'funnel_analytics') }}"
+      location: US
+      threads: 2
+      maximum_bytes_billed: 53687091200

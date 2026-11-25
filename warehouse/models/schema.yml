@@ -1,0 +1,28 @@
+version: 2
+models:
+  - name: fct_sessions
+    description: One eligible session. Funnel transitions require strictly increasing observed timestamps.
+    columns:
+      - name: session_key
+        data_tests: [not_null, unique]
+      - name: session_date
+        data_tests: [not_null]
+  - name: fct_orders
+    description: One observed order per usable transaction identifier.
+    columns:
+      - name: transaction_id
+        data_tests: [not_null, unique]
+  - name: fct_session_items
+    description: One viewed item per session with same-item outcomes after the first view.
+  - name: mart_daily_funnel
+    description: Additive counts by session date, device, user acquisition channel, and visit status.
+  - name: mart_daily_products
+    description: Additive session-item counts by session date and supported dimensions.
+  - name: mart_weekly_cohorts
+    description: Weekly browser return activity grouped by first observed week in the export.
+  - name: mart_data_quality
+    description: Event-date coverage, purchase reconciliation, and canonical order revenue.
+  - name: mart_session_anomalies
+    description: Review queue for sessions with unusual activity or purchase sequences.
+  - name: mart_journey_events
+    description: Event names and timestamps for sessions flagged in the review queue.

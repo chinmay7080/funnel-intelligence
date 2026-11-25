@@ -1,0 +1,17 @@
+name: funnel_intelligence
+version: '1.0.0'
+config-version: 2
+profile: funnel_intelligence
+model-paths: [models]
+test-paths: [tests]
+macro-paths: [macros]
+models:
+  funnel_intelligence:
+    +materialized: table
+    stg_ga4_events:
+      +materialized: view
+    int_event_items:
+      +materialized: view
+vars:
+  source_start: '2020-11-01'
+  source_end: '2021-01-31'

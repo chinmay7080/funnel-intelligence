@@ -1,0 +1,11 @@
+version: 2
+sources:
+  - name: ga4
+    database: "{{ 'bigquery-public-data' if target.type == 'bigquery' else target.database }}"
+    schema: "{{ 'ga4_obfuscated_sample_ecommerce' if target.type == 'bigquery' else 'raw' }}"
+    tables:
+      - name: events
+        identifier: "{{ 'events_*' if target.type == 'bigquery' else 'events' }}"
+        description: Official GA4 sample shards in BigQuery or generated GA4-shaped events in the local demo.
+        quoting:
+          identifier: true

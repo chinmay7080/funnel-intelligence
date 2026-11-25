@@ -1,0 +1,17 @@
+.venv/
+.data/
+__pycache__/
+.pytest_cache/
+.env*
+!.env.example
+.streamlit/secrets.toml
+warehouse/target/
+warehouse/logs/
+logs/
+.user.yml
+*credentials*.json
+*secrets*.json
+service-account*.json
+*.pem
+*.key
+.DS_Store
